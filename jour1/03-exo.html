@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>accéder à la page suivante : {{ url }}</p>
+        <article v-for="article in articles"><!-- *ngFor-->
+            <h2>{{ article.titre }}</h2>
+            <button>{{ article.id }}</button>
+        </article>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data : () => {
+                return {
+                    verif : true ,
+                    url : "https://via.placeholder.com/200x100" ,
+                    articles : [ {id : 1 , titre : "article 1"}, {id : 2 , titre : "article 2"}]
+                }
+            }
+        })
+        app.mount("#app")
+    </script>    
+</body>
+</html>
