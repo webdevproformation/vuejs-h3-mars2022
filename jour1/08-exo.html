@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="email" v-model="email">
+        <select v-model="pays">
+            <option value=""></option>
+            <option value="France">France</option>
+            <option value="Belgique">Belgique</option>
+            <option value="Espagne">Espagne</option>
+        </select>
+        <textarea v-model="commentaire"></textarea>
+        <p>{{ formulaireComplet() }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data (){
+                return {
+                    email : "",
+                    pays : "",
+                    commentaire : ""
+                }
+            }, 
+            methods : {
+                formulaireComplet : function(){
+                    return this.email + " " + this.pays + " " + this.commentaire
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
