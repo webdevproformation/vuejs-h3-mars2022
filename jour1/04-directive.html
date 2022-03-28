@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- directive => attribut spécial qui ajouté par la lib VueJS-->
+        <img v-bind:src="urlImg" v-bind:alt="textAlternatif" v-bind:title="'je suis le titre'">
+        <img :src="urlImg" :alt="textAlternatif" :title="'je suis le titre'">
+        <button v-on:click="remplirConsole">je suis un bouton</button>
+        <button @click="remplirConsole">je suis un bouton</button>
+        <hr>
+        <button @click="afficherPrenom('Alain')">je suis un bouton avec un paramètre</button>
+        <button @click="fonction($event , 10)">je suis un bouton avec un paramètre qui est l'évènement</button>
+        <!-- impossible de mettre du js directement comme valeur d'attribut -->
+        <button @click="const a = 2 ; console.log(a)">inline js</button>
+        <h1>action qui modifie une data</h1>
+        <button @click="remplirP">remplir p</button>
+        <p>{{ message }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data : () => {
+                return {
+                    urlImg : "https://via.placeholder.com/200x100",
+                    textAlternatif : "je suis une image",
+                    message : ""
+                }
+            },
+            methods : {
+                remplirP() { // ES6 
+                    // setMessage("le nouveau text")
+                    this.message = "le nouveau text"
+                    // dès que 
+                },
+                remplirConsole : function(){
+                    console.log("je viens de cliquer sur le bouton")
+                },
+                afficherPrenom(prenom){
+                    console.log(prenom)
+                },
+                fonction : (e , nb) => { console.log(e , nb) }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
+
+<!-- créer le fichier 05-exo.html utilise Vuejs
+
+    créer un système d'onglet 
+    button1  bouton 2 bouton3
+    3 p => chacun contenant 10 mots 
+
+    si je clique le 1er btn => afficher le 1er p et masquer les autres p
+    si je clique le 2ème btn => afficher le 2ème p et masquer les autres p
+    si je clique le 3ème btn => afficher le 3ème p et masquer les autres p
+
+
+

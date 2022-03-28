@@ -11,7 +11,7 @@
         <p>accéder à la page suivante : {{ url }}</p>
         <article v-for="article in articles"><!-- *ngFor-->
             <h2>{{ article.titre }}</h2>
-            <button>{{ article.id }}</button>
+            <button v-text="article.id"></button>
         </article>
     </div>
     <script src="https://unpkg.com/vue@3"></script>
