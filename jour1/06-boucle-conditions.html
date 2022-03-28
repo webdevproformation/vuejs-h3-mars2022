@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" :value="status" @click="modifStatus">
+        <p v-if="status">je viens de cocher la case</p>
+        <ul>
+            <li v-for="livre in livres">{{ livre }}</li>
+        </ul>
+        <ul>
+            <li v-for="item in collection">
+            <span v-if="item.status">{{ item.nom }}</span>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data : () => { // API option // Api Composition 
+                return {
+                    status : false,
+                    livres : ["Notre Dame de Paris", "Les Misérables", "Le Passe-Murailles"],
+                    collection : [
+                            {nom : "Notre Dame de Paris", status : true },
+                            {nom : "Les Misérables",status : false },
+                            {nom : "Le Passe-Murailles" , status : true}
+                        ],
+                }
+            },
+            methods : {
+                modifStatus : function(){
+                    this.status = !this.status
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
