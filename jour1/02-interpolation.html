@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ premierVariable.toUpperCase() }}</p>
+        <!-- mustache -->
+        <p>{{ "0"+date.getMonth() +"/"+ date.getFullYear() }}</p>
+        <p>{{ liste }}</p>
+        <p>{{ liste[2]}} </p>
+        <!-- directive v-text -->
+        <p v-text="liste[2]"></p>
+        <!-- équivalent à la ligne précédente -->
+        <p>{{ btn }}</p><!-- .innerText .textContent -->
+        <p v-html="btn"></p><!-- permet de .innerHTML-->
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            /* data (){
+                return {}
+            } */
+            data : () => { // state // useState()
+                return {
+                    premierVariable : "bonjour les amis",
+                    date : new Date(),
+                    liste : ["lundi", "mardi", "mercredi"],
+                    btn : "<button>je suis un bouton</button>"
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
+
+const [data , setData ] = useState( {
+    premierVariable : "bonjour les amis",
+    date : new Date(),
+    liste : ["lundi", "mardi", "mercredi"],
+    btn : "<button>je suis un bouton</button>"
+})
+
+<!-- cas pratique créer le fichier 03-exo.html 
+utilise vue js 
+
+créer dans le state local de votre application 3 valeurs 
+verif : true
+url : "https://via.placeholder.com/200x100"
+articles : [ {id : 1 , titre : "article 1"}, {id : 2 , titre : "article 2"}]
+
+afficher dans la vue le code suivant en utilisant les variables dans du state de l'app
+
+<p>accéder à la page suivante : https://via.placeholder.com/200x100</p>
+<article>
+    <h2>article 1</h2>
+    <button>1</button>
+</article>
+<article>
+    <h2>article 2</h2>
+    <button>2</button>
+</article>
+
+-->
