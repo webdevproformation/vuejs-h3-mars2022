@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="afficher(1)">Lorem.</button>
+        <button  @click="afficher(2)">Placeat?</button>
+        <button  @click="afficher(3)">Porro.</button>
+        <p :style="nb === 1 ? 'display:block' : 'display:none' ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, cumque?</p>
+        <p :style="nb === 2 ? 'display:block' : 'display:none' ">Cum animi debitis sapiente aliquam voluptatem? Quibusdam necessitatibus voluptatibus tempore?</p>
+        <p :style="nb === 3 ? 'display:block' : 'display:none' ">Quas nam harum earum labore incidunt provident tempora porro quam?</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data : () => {
+                return {
+                    nb : 1
+                }
+            },
+            methods : {
+                afficher : function(nb){
+                    this.nb = nb
+                }
+            }
+        })
+
+        app.mount("#app")
+    </script>
+</body>
+</html>
