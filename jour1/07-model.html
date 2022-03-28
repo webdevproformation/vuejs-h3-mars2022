@@ -7,6 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app">
+        <input type="text" v-bind:value="prenom" v-on:keyup="getPrenom" placeholder="saisir un prénom">
+        <input type="text" v-model="nom" placeholder="saisir un nom">
+        <!-- Angular => TwoWay Binding => ([ngModel]) sur Angular  -->
+        <p>{{ prenom }}</p>
+        <p>{{ nom }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    prenom : "",
+                    nom : "toto"
+                }
+            },
+            methods : {
+                getPrenom : function(e){
+                    this.prenom = e.target.value
+                }
+            }
+        }).mount("#app")
+    </script>
 </body>
 </html>
