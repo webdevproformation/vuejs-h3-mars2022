@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="montant_a_convertir">
+        <p>{{ montant_a_convertir }} == {{ montant }} EUROS</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data (){
+                return {
+                    devise : "EUROS",
+                    montant : 10 ,
+                    taux_de_change : [
+                        {devise : "DOLLARS" , tx : 0.90},
+                        {devise : "YENS" , tx : 0.007},
+                        {devise : "EUROS" , tx : 1}
+                    ]
+                }
+            },
+            computed : {
+                montant_a_convertir : {
+                    get : function(){
+                        console.log(this.montant)
+                        const resultat = this.taux_de_change.find(t => t.devise === this.devise)
+                        if(resultat){
+                            return this.montant.toFixed(2) *resultat.tx + " "+ this.devise
+                        }
+                        return this.montant.toFixed(2) + " "+ this.devise
+                    },
+                    set : function(valeur){
+                        const [chiffre , devise]= valeur.split(" ")
+                        this.montant = parseFloat(chiffre) ;
+                        this.devise = devise ;
+                    }
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
