@@ -41,18 +41,39 @@
                 // DOM2 
                 //document.onmousemove = mouvemouse.bind(this) 
                 // DOM3
-                document.addEventListener("mousemove", this.mouvemouse )  
+                // document.addEventListener("mousemove", this.mouvemouse )
+                // OK !!!!   
+                document.addEventListener("mousemove", (e) => {
+                    console.log("écouteur sur le mouvement de souris")
+                    const {clientX , clientY } = e;
+                    this.obj = {x : clientX, y : clientY}
+                } )  
             },
             unmounted : function(){
                 clearInterval(this.$timer);
                 // DOM2
                 // document.onmousemove = function(){}
                 // DOM3
-                document.removeEventListener("mousemove", this.mouvemouse )
+                //document.removeEventListener("mousemove", this.mouvemouse )
+                document.removeEventListener("mousemove", (e) => {
+                    console.log("écouteur supprimé !")
+                    const {clientX , clientY } = e;
+                    this.obj = {x : clientX, y : clientY}
+                } )
             }
         })
-        
         app.mount("#app")
     </script>
 </body>
 </html>
+
+<!--
+    const onClick = () => {}
+    // OK
+    document.addEventListener("click" , onClick)
+    document.removeEventListener("click" , onClick) // event + la ref mémoire de la fonction => pour que l'évènement soit supprimé correctement
+    
+    document.addEventListener("click" , () => {}) // OK
+    document.removeEventListener("click" , () => {}) // KO => event mais ?? il n'a pas la référence 
+    // https://www.sqlpac.com/en/documents/javascript-listing-active-event-listeners.html
+-->
