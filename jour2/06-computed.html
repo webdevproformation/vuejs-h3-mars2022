@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="verif">
+        <input type="text" v-model="email">
+        <p>{{ email }}</p>
+        <p>{{ fonction }}</p><!-- propriété et non plus une fonction à éxécuter -->
+        <p>{{ fonction2 }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data : () => {
+                return {
+                    verif : false,
+                    email : ""
+                }
+            },
+            /* methods : { // exécuté lors du render de notre composant dans le DOM 
+                // aussi être exécutée lorsque modification de data 
+                fonction(){
+                    console.log("je suis exécuté")
+                    return "un peu de text"
+                }
+            } */
+            computed : { // fonction avec un cache 
+                fonction(){ // exécuté QUE 1 seule fois 
+                    console.log("je suis exécuté")
+                    return "un peu de text"
+                },
+                fonction2(){
+                    // variable utilise une variable de data verif
+                    // la fonction ne doit être exécutée QUE si verif est modifiée 
+                    // const [verif, setVerif] = useState(true)
+                    // setVerif(false)
+                    // useEffect(() => {} , [verif])
+                    console.log("fonction 2 exécuté")
+                    return this.verif ? "j'ai cliqué sur la coche" : "j'ai décoché la case"
+                }
+            }
+            // computed versus methods =>
+            // computed => prendre plus d'espace mémoire que methods 
+        }).mount("#app")
+    </script>
+</body>
+</html>
