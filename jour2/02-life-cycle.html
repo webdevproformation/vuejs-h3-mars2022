@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        React / Angular / VueJS => cycle de vie du composant 
+        executer des actions à des moments lors de la création du composant
+        Composant => créer RAM navigateur 
+        App => associé DOM 
+        App => modifier des valeurs states (data)
+        App => supprimer du DOM 
+
+        React useState() / useEffect( () => { } , [])
+        useEffect( () => { } , [variable])
+        useEffect( () => { return () => { }} , [variable])
+
+        Vue.createApp({
+            data(){},
+            methods : {},
+            mounted : function(){ // événement 
+                // requête ajax // lancer un timer 
+            }, 
+            unmounted : function(){
+                // nettoyer les écouteurs évènements / stopper le timer 
+            }
+            beforeCreate : function(){}
+        })
+    -->
+
+    <div id="app">
+        <p>{{ seconds }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return { seconds : 0}
+            },
+            mounted : function(){
+                const self = this;
+                this.$timer = setInterval( function(){ // this.$timer variable affichage MAIS variable logique interne du composant / app => faire fonctionner l'application   
+                // $parent // $emit
+                    console.log("je suis un timer")
+                    self.seconds++
+                }, 1000)
+            },
+            unmounted  : function(){
+                console.log("le timer vient d'être supprimé de la mémoire")
+                clearInterval(this.$timer)
+            }
+        })
+        app.mount("#app")
+        // app.unmount()
+    </script>
+
+</body>
+</html>
