@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- https://vuejs.org/guide/essentials/computed.html#writable-computed -->
+    <div id="app">
+        <input type="text" v-model="nom_complet">
+        <ul>
+            <li>Prénom : {{ prenom }}</li>
+            <li>Nom : {{ nom }}</li>
+            <li>Nom Complet : {{ nom_complet }}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data (){
+                return {
+                    prenom : "Alain",
+                    nom : "DOE",
+                }
+            },
+            computed : { // setter et getter 
+                nom_complet : {
+                    get : function(){
+                        return this.prenom + " " + this.nom
+                    },
+                    set : function(nouvelleValeur, ancienneValeur){
+                        const [prenom , nom] = nouvelleValeur.split(" ")
+                        this.prenom = prenom ;
+                        this.nom = nom 
+                    }
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
