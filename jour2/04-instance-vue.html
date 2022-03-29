@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="addJour">Add jour</button>
+        <p>{{ liste }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data : () =>{
+                    return {
+                        liste : ["lundi", "mardi"],
+                        verif : true
+                }
+            },
+            methods : {
+                addJour : function(){
+                    this.liste.push("mercredi")
+                }
+            }
+        });
+        const monApp = app.mount("#app")
+        console.log(app);
+        // app.component()
+        // app.directive() v-if v-for  => v-example
+        console.log(monApp.$data);
+        console.log(monApp.$data.liste);
+        // en plus de récupérer les valeurs qui sont stockées dans data => liste
+        // VueJS va ajouter setter et des getter modifier l'état dès que l'on modifie la valeur de la propriété 
+
+
+        class A{
+            _info = 0;
+            // automatiquement VueJS va ajouter set et get pour chaque propriété créée dans la propriété
+            // grâce à qu'il va automatique re update la vue de notre application
+            set info (nb){
+                console.log("j'utilise le setter") // ET relancer un render de la template
+                this._info = nb
+            }
+            get info () {
+                console.log("j'utilise le getter")
+                return this._info
+            }
+        }
+
+        const a = new A()
+        console.log(a);
+
+        console.log(a.info);  // get de ma class
+
+        a.info = 20 // set de ma class
+        console.log(a.info);   // get de ma class
+
+
+    </script>
+</body>
+</html>
+
+<!--
+    React 
+    const [tbl , setTbl] = useState(["lundi", "mardi"])
+
+    const cloneTbl = [...tbl]
+    cloneTbl.push("mercredi");
+    setTbl(cloneTbl)
+
+    
+-->
