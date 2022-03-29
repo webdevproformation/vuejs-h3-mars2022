@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="filtrer" v-model="search">
+        <input type="text" placeholder="login" v-model="login">
+        <h2>votre login</h2>
+        <p>{{ login }}</p>
+        <h2>liste des livres disponibles</h2>
+        <ul>
+            <li v-for="livre in getLivres">{{ livre.nom }}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data : () => {
+                return {
+                    livres : [ 
+                            {nom : "Notre Dame de Paris", status : true },
+                            {nom : "Les Misérables",status : false },
+                            {nom : "Le Passe-Murailles" , status : true}
+                    ],
+                    search : "",
+                    login : ""
+                }
+            },
+            computed : {
+                getLivres : function(){
+                    console.log("la recherche est exécutée")
+                    return this.livres.filter((livre) => {
+                        return livre.nom.toLowerCase().includes(this.search.toLowerCase().trim())
+                    }) ; 
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
