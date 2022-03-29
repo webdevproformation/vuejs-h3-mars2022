@@ -11,6 +11,15 @@
         <input type="checkbox" v-model="show">
         <input type="text" v-model="information">
         <p v-if="show">{{ information }}</p>
+        <p v-else>veuillez cocher la case pour afficher le texte</p>
+
+        <p v-if="liste.length === 0"> liste contient aucun élément</p>
+        <p v-else-if="liste.length === 1"> liste contient un élément</p>
+        <p v-else> liste contient plus de deux éléments</p>
+
+        <p v-if="login === information && mdp ==='123'"> vous avez saisi correctement vos identifiants  </p>
+        <p v-else>erreur lors de l'identification</p>
+        
     </div>
     <script src="https://unpkg.com/vue@3"></script>
     <script>
@@ -18,7 +27,10 @@
             data(){
                 return {
                     show : false,
-                    information : ""
+                    information : "",
+                    liste : [1, 2, 3,4], 
+                    login : "toto",
+                    mdp : "123"
                 }
             }
         }).mount("#app")
