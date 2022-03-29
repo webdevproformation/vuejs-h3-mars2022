@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>modifier sur le clique</h2>
+        <a href="https://google.fr" @click="onClick">lien</a>
+        <br>
+        <div @click="onClickParent">
+            <a href="https://google.fr" v-on:click.prevent.stop="onClick2">lien</a>
+        </div>
+        <h2>modifier sur lors de l'utilisation du clavier</h2>
+        <input type="text" @keyup="onKeyup">
+        <input type="text" @keyup.enter="onKeyup2">
+        <h2>modifier sur la directive v-model</h2>
+        <input type="text" v-model.number="adresse">
+        <!-- créer des formulaires login / password -->
+        <p>--------{{adresse}}------------</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data (){
+                return {
+                    adresse : ""
+                }
+            },
+            methods : {
+                onClick : function(e){
+                    e.preventDefault();
+                    console.log("j'ai cliqué lien 1")
+                },
+                onClick2 : function(){
+                    console.log("j'ai cliqué lien 2")
+                },
+                onClickParent : function(){
+                    console.log("j'ai cliqué la div")
+                },
+                onKeyup : function(e){
+                    if(e.key === "Enter"){
+                        console.log("je veux valider le champ")
+                    }
+                },
+                onKeyup2 : function(e){
+                    console.log("j'utilise un modifier pour sur Enter")
+                }
+            },
+            watch : {
+                adresse : function(valeur){
+                    console.log(typeof valeur)
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
+<!--
+    click submit
+    .prevent
+    .stop => e.stopPropagation()=> bubble 
+    .capture
+    .self => sur l'élément et non les enfants qu'il contient
+
+    utilisation du clavier 
+    .space
+    .enter
+    .escape
+    .tab
+    .down / .left / .right / .up
+
+    v-model
+    .lazy
+    .trim
+    .number
+-->
