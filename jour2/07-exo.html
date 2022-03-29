@@ -12,10 +12,13 @@
         <input type="text" placeholder="login" v-model="login">
         <h2>votre login</h2>
         <p>{{ login }}</p>
+        <h2>Ajouter un livre</h2>
+        <button @click="livres.push({nom : 'Le Petit Prince' ,  status : true })">Ajouter un livre</button>
         <h2>liste des livres disponibles</h2>
         <ul>
             <li v-for="livre in getLivres">{{ livre.nom }}</li>
         </ul>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
     <script>
@@ -33,6 +36,7 @@
             },
             computed : {
                 getLivres : function(){
+                    // fonction n'est exécutée QUE si livres et search sont modifiées via un set 
                     console.log("la recherche est exécutée")
                     return this.livres.filter((livre) => {
                         return livre.nom.toLowerCase().includes(this.search.toLowerCase().trim())
