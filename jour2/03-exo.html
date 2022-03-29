@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ seconds }}</p>
+        <p>{{ obj }}</p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        function mouvemouse(e){
+            console.log("écouteur sur le mouvement de souris")
+            const {clientX , clientY } = e;
+            this.obj = {x : clientX, y : clientY}
+        }
+
+        const app = Vue.createApp({
+            data(){
+                return {
+                    seconds : 0,
+                    obj : {x: 0 , y : 0}
+                }
+            },
+            methods : {
+                mouvemouse(e){
+                    console.log("écouteur sur le mouvement de souris")
+                    const {clientX , clientY } = e;
+                    this.obj = {x : clientX, y : clientY}
+                }
+            },
+            mounted : function(){
+                this.$timer = setInterval( () => {
+                    console.log("timer est start")
+                    this.seconds += 3;
+                } , 1000)
+                // DOM2 
+                //document.onmousemove = mouvemouse.bind(this) 
+                // DOM3
+                document.addEventListener("mousemove", this.mouvemouse )  
+            },
+            unmounted : function(){
+                clearInterval(this.$timer);
+                // DOM2
+                // document.onmousemove = function(){}
+                // DOM3
+                document.removeEventListener("mousemove", this.mouvemouse )
+            }
+        })
+        
+        app.mount("#app")
+    </script>
+</body>
+</html>
