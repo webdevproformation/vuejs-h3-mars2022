@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <mon-button :text="'text dans le bouton'" :width="'200px'" :type="['alert' , 'alert-success']" :user="{age : 12 , nom : 'Alain'}"></mon-button>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        // https://vuejs.org/guide/components/props.html
+        const monButton = {
+            props : {
+                text : String ,
+                width : {
+                    type : String,
+                    required : true
+                },
+                type : {
+                    type : Array,
+                    default : ["bg-dark", "btn" , "btn-light"]
+                },
+                user : Object 
+            }, 
+            template: `<button :style="{ width : width }" :class="type">{{ text }}</button>
+            <p>{{ user }}</p>`
+        }
+        Vue.createApp({
+            components : {"mon-button" : monButton}
+
+        }).mount("#app")
+    </script>
+</body>
+</html>
