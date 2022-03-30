@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <newsletter :types="['news', 'letter']" :border="1"></newsletter>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const newsletter = {
+            props : {
+                placeholder : {
+                    type:String ,
+                    default : "veuillez saisir votre email"
+                },
+                border : Number ,
+                types : {
+                    type : Array ,
+                    required : true
+                }
+            },
+            template : `<form :class="types" :style="{ border : border+'px solid red'}">
+                <input type="email" :placeholder="placeholder"> 
+                <input type="submit">
+            </form>`
+        }
+        Vue.createApp({
+            components : {newsletter}
+        }).mount("#app")
+    </script>
+</body>
+</html>
