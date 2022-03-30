@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p v-example.trim="bonjour"></p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data (){
+                return {
+                    bonjour : "Hello"
+                }
+            }
+        });
+        app.directive("example" , function(el, binding, vnode){
+            // el => la balise qui contient la directive
+            // binding => élément vueJS + les modifier 
+            // vnode API Options / Api Composition 
+            console.log(el, binding,vnode)
+            if(binding.modifiers.trim){
+                el.innerHTML = binding.value.trim()
+            }
+        })
+
+        app.mount("#app")
+
+    </script>
+</body>
+</html>
