@@ -17,6 +17,7 @@
     <script src="https://unpkg.com/vue@3"></script>
     <script>
         const more = function (el, binding , vnode){
+            console.log(vnode)
             let resultat = binding.value.split(" ").slice(0, 10).join(" ")
             if(binding.modifiers.long){
                 resultat = binding.value.split(" ").slice(0, 20).join(" ")
@@ -26,6 +27,21 @@
             el.style["padding"] = "5px 8px"
             el.style["border-radius"] = "5px"
         }
+
+        /* API Option  => historique (en 2014)
+        à partir de la version 3 de VUEJS 2019 / 2020 => nouvelle manière de créer des composant 
+        API Composition => nouvelle manière de créer des composants 
+        nouvelles propriétés / méthodes 
+        {
+            data (){},
+            methods: {},
+            computed : {}
+            mounted : {},
+            unmounted : {},
+            directives : {},
+            components : {}
+        }
+        */
 
         Vue.createApp({
             directives : {more},
