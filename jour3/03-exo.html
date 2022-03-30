@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-text="texte"></div> 
+        <hr>
+        <div v-more="texte"></div> 
+        <hr>
+        <div v-more.long="texte"></div> 
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const more = function (el, binding , vnode){
+            let resultat = binding.value.split(" ").slice(0, 10).join(" ")
+            if(binding.modifiers.long){
+                resultat = binding.value.split(" ").slice(0, 20).join(" ")
+            }
+            el.textContent = resultat ; 
+            el.style["border"] = "2px solid red"
+            el.style["padding"] = "5px 8px"
+            el.style["border-radius"] = "5px"
+        }
+
+        Vue.createApp({
+            directives : {more},
+            data(){
+                return {
+                    texte : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima, vitae ratione quos sed quasi sequi adipisci consequatur deleniti debitis at, aperiam, corrupti odio. Maxime aspernatur enim rem ullam animi facilis autem nihil, sed fugit aliquam voluptates inventore non expedita qui. Quidem aliquid perspiciatis eaque? Fuga esse blanditiis voluptatibus porro!"
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
