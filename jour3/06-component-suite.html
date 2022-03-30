@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <menu-top :user="user"></menu-top>
+        <hr/>
+        <p>{{ contenu }}</p>
+        <!-- version web => ne pas utilise de balise existante 
+        pas de majuscule 
+        utiliser des noms composés pour vos balises 
+        -->
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        // deux manières de créer des composants (html)
+        const menuTop = {
+            props : ["user"], // récupérer les valeurs passées comme props dans un tableau
+            data(){
+                return {
+                    url : "https://via.placeholder.com/100x50",
+                    show : true
+                }
+            },
+            methods : {
+                toggle : function(){
+                    this.show = !this.show; 
+                }
+            },
+            mounted : function(){
+                console.log("le composant menu-top est disponible dans le DOM")
+            },
+            template : `
+                <img v-bind:src="url" alt="">
+                <button @click="toggle">afficher masquer menu</button>
+                <ul v-if="show">
+                    <li>Accueil</li>
+                    <li>Nous Contacter</li>
+                    <li>Login</li>
+                </ul>
+                <p>{{ user }}</p>
+            `
+        }
+        const app = Vue.createApp({
+            components : { "menu-top" : menuTop },
+            data (){
+                return {
+                    contenu : "lorem ipsum",
+                    user : {
+                        prenom : "Alain",
+                        role : "admin",
+                        email : "alain@yahoo.fr",
+                        age : 22
+                    }
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</body>
+</html>
