@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="onSubmit">
+            <input type="text" v-model.trim="email">
+            <select v-model="pays">
+                <option value=""></option>
+                <option value="france">france</option>
+                <option value="belgique">belgique</option>
+                <option value="espagne">espagne</option>
+            </select>
+            <input type="date" v-model="date">
+            <input type="submit">
+            <p v-if="show">Merci d'avoir rempli le formulaire</p>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    email : "",
+                    pays : "",
+                    date : "",
+                    show : false 
+                }
+            },
+            methods : {
+                onSubmit : function(){
+                    if(this.email && this.pays && this.date){
+                        this.show = true
+                    }else {
+                        this.show = false
+                    }
+                }
+            },
+            watch : {
+                email : function(value){
+                    this.email = value.replace(/[><]+/ , ""); 
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
