@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p v-example.trim="bonjour"></p>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const example = function(el, binding, vnode){
+            // el => la balise qui contient la directive
+            // binding => élément vueJS + les modifier 
+            // vnode API Options / Api Composition 
+            console.log(el, binding,vnode)
+            if(binding.modifiers.trim){
+                el.innerHTML = binding.value.trim()
+            }
+        };
+
+        const app = Vue.createApp({
+            directives : {example : example},
+            data (){
+                return {
+                    bonjour : "Hello"
+                }
+            }
+        });
+
+        app.mount("#app")
+
+    </script>
+</body>
+</html>
+
+<!--
+    créer un nouveau fichier .html
+    créer une directive v-more => si la valeur 
+
+    <div v-more="texte"></div> 
+    permet de remplir la balise concernée div avec les 10 premiers mots de texte
+    
+    <div v-more.long="texte"></div>  
+    permet de remplir la balise concernée div avec les 20 premiers mots de texte
+    
+    data(){
+        return {
+            texte : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima, vitae ratione quos sed quasi sequi adipisci consequatur deleniti debitis at, aperiam, corrupti odio. Maxime aspernatur enim rem ullam animi facilis autem nihil, sed fugit aliquam voluptates inventore non expedita qui. Quidem aliquid perspiciatis eaque? Fuga esse blanditiis voluptatibus porro!"
+        }
+    }
+
+
+-->
