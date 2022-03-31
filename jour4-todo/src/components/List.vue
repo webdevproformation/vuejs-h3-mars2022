@@ -36,6 +36,7 @@ export default {
 cas pratique : 
 ajouter dans chaque <li> button qui permet de supprimer définitivement la tâche de la liste de tâche 
 
+-----------------
 
 cas pratique => persister les données dans une base 
 
