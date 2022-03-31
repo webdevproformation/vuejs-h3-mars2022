@@ -36,7 +36,6 @@ export default {
     <h1>{{ titre }}</h1>
 
     <button @click="toggleModal">show modal</button>
-
     <button @click="toggle">toggle liste</button>
     <ul v-if="verif">
       <li v-for="(jour, index) in liste" :key="index">{{ jour }}</li>
