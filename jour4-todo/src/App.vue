@@ -1,7 +1,7 @@
 <template>
   <h1>Todos List</h1>
   <Form @add="addTodo" />
-  <List :datas="liste"  />
+  <List :datas="liste" @suppr="deleteTodo" />
 </template>
 <script>
 import Form from "./components/Form.vue"
@@ -14,10 +14,14 @@ export default {
     function addTodo(todo){
       liste.value.push(todo)
     }
+    function deleteTodo(index){
+      liste.value.splice(index, 1)
+    }
 
     return {
       liste,
-      addTodo
+      addTodo,
+      deleteTodo
     }
   },
   components : {Form, List}

@@ -2,7 +2,8 @@
     <section>
         <h2>Liste des tâches</h2>
         <ul>
-            <li v-for="tache in datas" :class="{realise : tache.status}" @click="terminee(tache)">
+            <li v-for="(tache , index) in datas" :class="{realise : tache.status}" @click.self="terminee(tache)">
+                <button @click.stop="supprimer(index)">supprimer tâche</button>
                 {{ tache.nom }}
             </li>
         </ul>
@@ -11,12 +12,16 @@
 <script>
 
 export default {
-    setup( ){
+    setup(props, context ){
         function terminee(tache){
             tache.status = !tache.status
         }
+        function supprimer (index){
+            context.emit("suppr" , index)
+        }
         return {
-            terminee
+            terminee,
+            supprimer
         }
     },
     props : ["datas"]
