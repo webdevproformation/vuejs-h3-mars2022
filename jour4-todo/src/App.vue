@@ -44,3 +44,12 @@ export default {
   // 
 }
 </script>
+<!--
+finir le crud 
+supprimer => le supprimer dans la base de données
+update du status => dans la base de données 
+
+=> Composable 
+=> VueX 
+=> Router VueJS !!  
+-->
