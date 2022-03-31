@@ -2,6 +2,7 @@
 import User from "./components/User.vue";
 import Article from "./components/Article.vue"
 import Newsletter from "./components/Newsletter.vue"
+import Modal from "./components/Modal.vue";
 // Option Api
 export default {
   data (){
@@ -15,20 +16,27 @@ export default {
         age : 15,
         adresse : "75 rue de Paris 75000 Paris"
       },
-      placeholder : "saisir votre email"
+      placeholder : "saisir votre email",
+      showModal : false
     }
   },
   methods : {
     toggle : function(){
       this.verif = !this.verif; 
+    },
+    toggleModal: function() {
+      this.showModal = !this.showModal; 
     }
   },
-  components : { User , Article , Newsletter } // déclaration 
+  components : { User , Article , Newsletter , Modal } // déclaration 
 }
 </script>
 <template>
 <div>
     <h1>{{ titre }}</h1>
+
+    <button @click="toggleModal">show modal</button>
+
     <button @click="toggle">toggle liste</button>
     <ul v-if="verif">
       <li v-for="(jour, index) in liste" :key="index">{{ jour }}</li>
@@ -59,6 +67,9 @@ export default {
     <teleport to=".pied-page">
       <Newsletter :placeholder="placeholder" />
     </teleport>
+    <teleport to=".pied-page" v-if="showModal" >
+      <Modal @close="toggleModal"/>
+    </teleport> 
 </div>
 </template>
 <style>
