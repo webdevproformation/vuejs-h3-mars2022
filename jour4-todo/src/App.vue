@@ -41,6 +41,6 @@ export default {
         this.liste = data ; 
       })
   } */
-  // 15h25 bon café @ toute suite !!!
+  // 
 }
 </script>

@@ -22,6 +22,11 @@ export default {
 }
 </script>
 <!--
+cas pratique final de la journée
+lorsque vous soumettez votre tâche => lancer une insertion dans le fichier db.json 
+fetch("http://localhost:3004/todos" , {method : "post" , data : data , encryptage ...})
+-->
+<!--
 cas pratique 
 dans le composant Form => dans la partie template 
 créer un formulaire avec input de type texte + input de type submit
