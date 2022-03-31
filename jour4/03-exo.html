@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap:20px;
+        }
+        h1{
+            grid-column: 1/-1;
+        }
+        .important{
+            border:2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="show">{{ titre }}</h1>
+        <user v-for="(user , index) in users" :info="user" :position="index" @del="supprUser"></user>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const user = {
+            props : ["info" , "position"],
+            methods : {
+                supprimer : function(index){
+                    this.$emit("del", index )
+                },
+                modifTitre : function(){
+                    console.log(this.$parent); 
+                    //this.$parent.$data.titre = "j'ai modifié le titre du parent sans passer par un $emit"; 
+                   // this.$parent.$data.show = !this.$parent.$data.show;
+                    // this.$parent.$el (version 2 de VueJS)
+                    this.$.appContext.app._container.querySelector("h1").classList.toggle("important") 
+                }
+            },
+            template : `<article>
+                <h2>{{ info.name }}</h2>
+                <p>{{ info.email }}</p>
+                <p>{{ info.website }}</p>
+                <button @click="supprimer(position)">supprimer</button>
+                <button @click="modifTitre">modifier valeur dans le parent</button>
+            </article>
+            `
+        }
+        Vue.createApp({
+            components : { user },
+            methods : {
+                supprUser : function(index){
+                    this.users.splice(index , 1)
+                }
+            },
+            data(){
+                return {
+                    users : [],
+                    titre : "titre parent",
+                    show : true
+                }
+            },
+            mounted : function(){ // lorsque le composant est inséré dans le DOM
+                fetch("https://jsonplaceholder.typicode.com/users")
+                .then(reponse => reponse.json())
+                .then(users => this.users = users)
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
