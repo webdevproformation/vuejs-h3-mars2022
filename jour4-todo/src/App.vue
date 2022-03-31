@@ -9,7 +9,7 @@ import List from "./components/List.vue"
 import { ref } from "vue"
 export default {
   setup(){
-    let liste = ref([{id : 1 , nom : "tache1" , status : false}])
+    let liste = ref([{id : 1 , nom : "tache1" , status : true}])
 
     function addTodo(todo){
       liste.value.push(todo)

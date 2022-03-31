@@ -1,15 +1,22 @@
 <template>
-    <p>je suis le formulaire</p>
-    <button @click="ajouter">ajouter une nouvelle tâche </button>
+    <form @submit.prevent="onSubmit">
+        <input type="text" v-model="tache">
+        <input type="submit">
+    </form>
 </template>
 <script>
+import { ref } from "vue"
 export default {
     setup(props, context){
-        function ajouter(){
-            context.emit('add', {id : 2 , nom : "tache 2" , status : false})
+        let tache = ref("");
+
+        function onSubmit(){
+            context.emit('add', {id : Date.now() , nom : tache.value , status : false})
+            tache.value = ""; // vider le champ input text
         }
         return {
-            ajouter
+            tache ,
+            onSubmit
         }
     }
 }
