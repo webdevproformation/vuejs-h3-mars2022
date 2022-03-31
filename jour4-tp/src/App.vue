@@ -1,5 +1,6 @@
 <script>
 import User from "./components/User.vue";
+import Article from "./components/Article.vue"
 // Option Api
 export default {
   data (){
@@ -20,10 +21,11 @@ export default {
       this.verif = !this.verif; 
     }
   },
-  components : { User } // déclaration 
+  components : { User , Article } // déclaration 
 }
 </script>
 <template>
+<div>
     <h1>{{ titre }}</h1>
     <button @click="toggle">toggle liste</button>
     <ul v-if="verif">
@@ -32,6 +34,15 @@ export default {
     <p>{{ chiffre }}</p>
     <button @click="chiffre++">augmenter chiffre</button>
     <User :infos="user" @toggle="toggle" /> <!-- utiliser le composant --> 
+    <Article><!-- envoyer des informations parent -> enfant remplissant la balise dans le parent -->
+      <h1>je suis un article </h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, similique.</p>
+      <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+      </ul>
+    </Article>
+</div>
 </template>
 <style>
 /* le style css s'appliquer au composant MAIS déborder sur les autres composants parent / enfant
