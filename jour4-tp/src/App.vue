@@ -41,6 +41,18 @@ export default {
         <li>item 1</li>
         <li>item 2</li>
       </ul>
+      <template v-slot:liens><!-- slot nommé liens -->
+            <a href="#">lien 1</a>
+            <a href="#">lien 2</a>
+      </template>
+      <template v-slot:social><!-- slot nommé social -->
+      </template>
+    </Article>
+    <Article>
+      <template v-slot:social><!-- slot nommé social -->
+        <span></span>
+      </template>
+      <h1>{{ titre }}</h1>
     </Article>
 </div>
 </template>
