@@ -1,71 +1,38 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+// Option Api
+export default {
+  data (){
+    return {
+      titre : "titre de l'application",
+      chiffre : 10 ,
+      verif : false,
+      liste : ["lundi", "mardi" , "mercredi"]
+    }
+  },
+  methods : {
+    toggle : function(){
+      this.verif = !this.verif; 
+    }
+  }
+}
 </script>
-
 <template>
-  <h1>Hello World! </h1>
+    <h1>{{ titre }}</h1>
+    <button @click="toggle">toggle liste</button>
+    <ul v-if="verif">
+      <li v-for="(jour, index) in liste" :key="index">{{ jour }}</li>
+    </ul>
+    <p>{{ chiffre }}</p>
+    <button @click="chiffre++">augmenter chiffre</button>
 </template>
-
 <style>
-@import './assets/base.css';
+/* le style css s'appliquer au composant MAIS déborder sur les autres composants parent / enfant
+si je veux limiter le style QUE sur le composant concerné ! scoped
+attention il faut avoir les concernées DANS le template du composant */ 
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-}
+/* si vous avez besoin de créer des règles css globales */
+/*
+créer un fichier src/main.css
+import dans le fichier main.js => import "./main.css"
+*/
 </style>
