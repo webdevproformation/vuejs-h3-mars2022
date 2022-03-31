@@ -31,7 +31,7 @@ export default {
     </ul>
     <p>{{ chiffre }}</p>
     <button @click="chiffre++">augmenter chiffre</button>
-    <User :infos="user" /> <!-- utiliser le composant --> 
+    <User :infos="user" @toggle="toggle" /> <!-- utiliser le composant --> 
 </template>
 <style>
 /* le style css s'appliquer au composant MAIS déborder sur les autres composants parent / enfant
