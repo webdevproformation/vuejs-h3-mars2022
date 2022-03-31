@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pop-up{
+            position: fixed;
+            top:0;
+            left:0; 
+            z-index: 2;
+            background: rgba(0,0,0,0.3);
+            color:white;
+            width: 100%;
+            min-height: 100%;
+            text-align: center;
+            padding-top: 200px;
+            cursor: pointer;
+            /* pop up au dessus de #app => button est visible mais impossible de le cliquer */
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="togglePopUp">toggle</button>
+        <pop-up :toto="titre" :contenu="contenu" v-if="show" @fermer="togglePopUp"></pop-up><!-- composant que l'on va créer -->
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const popUp = {
+            props : ["toto", "contenu"],
+            template : `<div class="pop-up" @click="closePopUp">
+                <article>
+                    <h2>{{toto}}</h2>
+                    <p>{{contenu}}</p>
+                </article>
+            </div>`,
+            methods : {
+                closePopUp : function(){
+                    // clique sur cet élément => déclencher une méthode qui est dans le parent togglePopUp (ressemble beaucoup à Angular)
+                    // $emit("") créer un événement personnalisé (nom que l'on veut )
+                    this.$emit("fermer")
+                }
+            }
+        }
+        Vue.createApp({
+            components : {"pop-up" : popUp},
+            data(){
+                return {
+                    titre : "je suis un pop up",
+                    contenu : "lorem ipsum", 
+                    show: false 
+                }
+            },
+            methods : {
+                togglePopUp : function(){
+                    this.show = !this.show;
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
