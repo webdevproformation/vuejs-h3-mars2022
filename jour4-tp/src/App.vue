@@ -1,4 +1,5 @@
 <script>
+import User from "./components/User.vue";
 // Option Api
 export default {
   data (){
@@ -6,14 +7,20 @@ export default {
       titre : "titre de l'application",
       chiffre : 10 ,
       verif : false,
-      liste : ["lundi", "mardi" , "mercredi"]
+      liste : ["lundi", "mardi" , "mercredi"],
+      user : {
+        nom : "Alain",
+        age : 15,
+        adresse : "75 rue de Paris 75000 Paris"
+      }
     }
   },
   methods : {
     toggle : function(){
       this.verif = !this.verif; 
     }
-  }
+  },
+  components : { User } // déclaration 
 }
 </script>
 <template>
@@ -24,6 +31,7 @@ export default {
     </ul>
     <p>{{ chiffre }}</p>
     <button @click="chiffre++">augmenter chiffre</button>
+    <User :infos="user" /> <!-- utiliser le composant --> 
 </template>
 <style>
 /* le style css s'appliquer au composant MAIS déborder sur les autres composants parent / enfant
