@@ -11,8 +11,20 @@ export default {
         let tache = ref("");
 
         function onSubmit(){
-            context.emit('add', {id : Date.now() , nom : tache.value , status : false})
-            tache.value = ""; // vider le champ input text
+            const newtache = { nom : tache.value , status : false }
+            fetch(
+                    "http://localhost:3004/todos" , {
+                            method: "post", 
+                            headers : {"content-type": "application/json"} , 
+                            body : JSON.stringify(newtache)
+                        }
+                )
+                .then(reponse => reponse.json())
+                .then(data => {
+                    context.emit('add', data )
+                    tache.value = ""; // vider le champ input text
+                })
+            
         }
         return {
             tache ,
