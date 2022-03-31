@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>Total global : {{ total }}</p>
+        <compteur v-for="compteur in compteurs" :infos="compteur" @aug="plus"></compteur>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const compteur = {
+            props : ["infos"] ,
+            methods : {
+                augmenter : function(id){
+                    this.$emit("aug", id)
+                }
+            },
+            template : `
+                <p>
+                    <span>sous total : {{infos.nb}}</span>
+                    <button @click="augmenter(infos.id)">augmenter</button>
+                </p>`
+        }
+        Vue.createApp({
+            components : { compteur },
+            data(){
+                return {
+                    compteurs : [{id : 1, nb : 10}, {id : 2, nb : 0}]
+                }
+            },
+            methods : {
+                plus : function(id){
+                    const compteurAModifier =  this.compteurs.find(c => c.id === id)
+                    const index = this.compteurs.indexOf(compteurAModifier)
+                    this.compteurs[index].nb++;
+                    // modifier le total automatiquement
+                    // mettre à jour la valeur dans l'enfant !
+                }
+            },
+            computed : {
+                total : function(){
+                    return this.compteurs.reduce( (acc, item) => acc += item.nb , 0)
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
