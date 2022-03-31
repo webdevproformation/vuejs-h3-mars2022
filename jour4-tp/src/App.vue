@@ -1,6 +1,7 @@
 <script>
 import User from "./components/User.vue";
 import Article from "./components/Article.vue"
+import Newsletter from "./components/Newsletter.vue"
 // Option Api
 export default {
   data (){
@@ -13,7 +14,8 @@ export default {
         nom : "Alain",
         age : 15,
         adresse : "75 rue de Paris 75000 Paris"
-      }
+      },
+      placeholder : "saisir votre email"
     }
   },
   methods : {
@@ -21,7 +23,7 @@ export default {
       this.verif = !this.verif; 
     }
   },
-  components : { User , Article } // déclaration 
+  components : { User , Article , Newsletter } // déclaration 
 }
 </script>
 <template>
@@ -54,6 +56,9 @@ export default {
       </template>
       <h1>{{ titre }}</h1>
     </Article>
+    <teleport to=".pied-page">
+      <Newsletter :placeholder="placeholder" />
+    </teleport>
 </div>
 </template>
 <style>
