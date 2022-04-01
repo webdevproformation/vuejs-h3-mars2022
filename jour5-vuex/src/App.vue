@@ -1,5 +1,5 @@
 <template>
-  <p>{{ nb }}</p>
+  <p>{{ store.counter }}</p>
   <button @click="augmenter">Augmenter</button>
   <Test />
 </template>
@@ -9,17 +9,16 @@ import  Test  from "./components/Test.vue";
 import { useCounterStore } from "./stores/counter.js";
 
 export default {
+
   components : { Test },
-  data(){
-    return {
-      nb : 0
-    }
-  },
-  methods : {
-    augmenter(){
-      const store = useCounterStore()
+  setup(){
+    const store = useCounterStore()
+    function augmenter (){
       store.increment()
-      this.nb = store.counter ;
+    }
+    return {
+      store ,
+      augmenter
     }
   }
 }
