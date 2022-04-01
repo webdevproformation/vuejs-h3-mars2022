@@ -59,4 +59,8 @@ export default {
   .move > *{
     margin: 0 10px;
   }
+
+  .mt-4{
+    margin-top: 2em;
+  }
 </style>

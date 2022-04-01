@@ -5,6 +5,7 @@ import ArticlesView from '../views/ArticlesView.vue'
 import SingleView from '../views/SingleView.vue'
 import ProfilsView from '../views/ProfilsView.vue'
 import SingleProfilView from '../views/SingleProfilView.vue'
+import NotFound from '../views/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,11 @@ const router = createRouter({
       name: 'single-profil',
       component: SingleProfilView,
       props : true
+    },
+    {
+      path: '/:pathMatch(.*)*', // expression régulière si aucune route ne match 
+      name: 'not-found',
+      component: NotFound
     }
   ]
 })
