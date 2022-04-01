@@ -1,11 +1,15 @@
 <template>
   <p>{{ nb }}</p>
   <button @click="augmenter">Augmenter</button>
+  <Test />
 </template>
 
 <script>
-import { useCounterStore } from "./stores/counter.js"
+import  Test  from "./components/Test.vue";
+import { useCounterStore } from "./stores/counter.js";
+
 export default {
+  components : { Test },
   data(){
     return {
       nb : 0
