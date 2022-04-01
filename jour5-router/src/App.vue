@@ -7,6 +7,10 @@
             <RouterLink :to="{name : 'articles'}">Articles</RouterLink>
             <RouterLink :to="{name : 'login'}">Connexion</RouterLink>
           </nav>
+          <nav class="text-center move" >
+            <button @click="goPrev">précédent</button>
+            <button @click="goNext">suivant</button>
+          </nav>
       </header>
       <RouterView />
       <hr>
@@ -18,7 +22,14 @@
 
 <script>
 export default {
-
+  methods : {
+    goPrev(){
+      this.$router.go(-1)
+    },
+    goNext(){
+      this.$router.go(1)
+    },
+  }
 }
 </script>
   
@@ -43,5 +54,8 @@ export default {
   .text-center{
     display: flex !important;
     justify-content: center;
+  }
+  .move > *{
+    margin: 0 10px;
   }
 </style>
