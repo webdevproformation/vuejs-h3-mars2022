@@ -15,7 +15,7 @@
       <RouterView />
       <hr>
       <footer class="text-center">
-         <RouterLink :to="{name : 'about'}">About</RouterLink>
+         <RouterLink :to="{ name : 'about' }">About</RouterLink>
       </footer>
     </div>
 </template>

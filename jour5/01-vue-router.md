@@ -63,3 +63,16 @@ createApp(App)
 // connexion
 // contient un formulaire deux champs login / password
 // ce composant est accessible via l'url suivant http://localhost:3000/connexion 
+
+// créer une nouvelle page => profils 
+// requete https://jsonplaceholder.typicode.com/users
+
+// accessible depuis l'adresse /profils 
+pour chaque utiliser vous pouvez cliquer sur un bouton pour voir en détail son profil
+
+// accéder à un nouveau composant profilsDetail 
+// accessible depuis l'adresse /profils/:id 
+// vous affichez son profil en détail et 
+vous pouvez ajouter un bouton pour revenir sur la page précédente 
+
+
