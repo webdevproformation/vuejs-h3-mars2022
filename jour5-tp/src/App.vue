@@ -5,33 +5,19 @@
 </template>
 
 <script>
-import { reactive , ref } from "vue"
-import { useNb } from "./hook/useNb"
+import { useNb } from "./hook/useNb";
+import { useState } from "./hook/useState";
 export default {
   setup(){
+    const [nb,modifNb] = useNb(5); // fonction composite qui retourne une ou plusieurs variables reactive (ref) et une fonction qui permet de la modifier 
 
-    const [nb,modifNb] = useNb()
-
-    const state = reactive({
-      isLodding : false ,
-      data : [],
-      error : ""
-    })
-    function modifState(){
-      state.data.push("nouvel élément")
-    }
-
+    const [state , modifState ] = useState(); 
     return {
       state,
       modifState,
       nb,
       modifNb
     }
-
   }
 }
 </script>
-
-<style>
-
-</style>
