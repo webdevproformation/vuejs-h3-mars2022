@@ -58,3 +58,8 @@ Vue => main.js
 createApp(App) 
 .use()
 .mount("#app")
+
+// cas pratique créer un nouveau composant 
+// connexion
+// contient un formulaire deux champs login / password
+// ce composant est accessible via l'url suivant http://localhost:3000/connexion 

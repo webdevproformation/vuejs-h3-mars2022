@@ -1,12 +1,16 @@
 <template>
-<div class="wrapper">
-  <header>
-      <nav class="text-center">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-  </header>
-  <RouterView />
+  <div class="wrapper">
+      <header>
+          <nav class="text-center">
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink :to="{name : 'about'}">About</RouterLink>
+          </nav>
+      </header>
+      <RouterView />
+      <hr>
+      <footer class="text-center">
+         <RouterLink :to="{name : 'about'}">About</RouterLink>
+      </footer>
     </div>
 </template>
 
@@ -24,7 +28,7 @@ export default {
     box-sizing: border-box;
     padding: 0 20px;
   }
-  nav a {
+  nav a , footer a {
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
