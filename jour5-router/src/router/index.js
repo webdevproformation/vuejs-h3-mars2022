@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import ConnexionView from '../views/ConnexionView.vue'
 import ArticlesView from '../views/ArticlesView.vue'
 import SingleView from '../views/SingleView.vue'
+import ProfilsView from '../views/ProfilsView.vue'
+import SingleProfilView from '../views/SingleProfilView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +38,17 @@ const router = createRouter({
       component: SingleView,
       props : true // l'id est récupération comment props de votre composant
     },
+    {
+      path: '/profils',
+      name: 'profils',
+      component: ProfilsView
+    },
+    {
+      path: '/profils/:id',
+      name: 'single-profil',
+      component: SingleProfilView,
+      props : true
+    }
   ]
 })
 
