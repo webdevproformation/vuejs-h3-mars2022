@@ -33,3 +33,24 @@ export default {
   }
 }
 </script>
+
+<!--
+ dans le projet en cours jour5-tp
+ créer un nouveau composant reactive => Exo
+
+  créer formation  => []
+  créer matiere  => { nom : "" , duree : ""  }
+  utiliser l'API composition pour remplir ce tableau 
+  dans vue vous avez un formulaire avec deux champs 
+  input de type => nom 
+  input de number => duree => 
+  input de type submit
+  <ul>
+    <li>nom -  duree</li>
+  </ul>
+  une fois que vous avez cliquer sur le bouton de soumission
+  ajouter une nouvelle valeur dans la variable réactive 
+  formation
+  afficher la liste des matières créées dans une liste 
+
+-->
