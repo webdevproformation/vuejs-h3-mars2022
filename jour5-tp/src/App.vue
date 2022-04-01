@@ -37,9 +37,10 @@ export default {
 <!--
  dans le projet en cours jour5-tp
  créer un nouveau composant reactive => Exo
-
+  2 variables :
   créer formation  => []
   créer matiere  => { nom : "" , duree : ""  }
+  ----
   utiliser l'API composition pour remplir ce tableau 
   dans vue vous avez un formulaire avec deux champs 
   input de type => nom 
