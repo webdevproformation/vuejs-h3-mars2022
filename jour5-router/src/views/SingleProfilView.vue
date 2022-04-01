@@ -1,6 +1,5 @@
 <template>
     <pre>{{ profil.name }}</pre>
-    
     <p v-if="profil.address">{{ profil.address.street }}</p>
     <p>{{ profil?.address?.street }}</p>
     <div v-if="Object.keys(profil).length > 0">
@@ -9,12 +8,9 @@
     <button @click="goBack">revenir en arrière</button>
 </template>
 
-
-
 <script>
 import { onMounted , ref } from "vue";
 import { useRoute , useRouter } from "vue-router"
-
 
 export default {
     setup(){
