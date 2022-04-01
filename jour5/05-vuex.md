@@ -34,5 +34,14 @@ jour5-vuex
 
 cd jour5-vuex && npm i && npm run dev
 
+## cas pratique
+créer un nouveau store 
+panier []
 
+créer une action : 
+ajouter des produits {id : 1 , nom : "article"}
+
+=> l'utiliser dans le composant App 
+/ dans le composant Test 
+bouton qui permet d'ajouter un produit
 
