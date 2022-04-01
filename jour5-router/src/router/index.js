@@ -47,8 +47,7 @@ const router = createRouter({
     {
       path: '/profils/:id',
       name: 'single-profil',
-      component: SingleProfilView,
-      props : true
+      component: SingleProfilView
     },
     {
       path: '/:pathMatch(.*)*', // expression régulière si aucune route ne match 
@@ -59,3 +58,5 @@ const router = createRouter({
 })
 
 export default router
+
+// rdv 15h30 bon café @ toute suite !!!
