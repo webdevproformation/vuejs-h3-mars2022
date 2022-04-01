@@ -33,7 +33,8 @@ const router = createRouter({
     {
       path: '/articles/:id',
       name: 'single-article',
-      component: SingleView
+      component: SingleView,
+      props : true // l'id est récupération comment props de votre composant
     },
   ]
 })
