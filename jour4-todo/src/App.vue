@@ -1,7 +1,7 @@
 <template>
   <h1>Todos List</h1>
   <Form @add="addTodo" />
-  <List :datas="liste" @suppr="deleteTodo" />
+  <List :datas="liste" @suppr="deleteTodo" @update="updateTodo"/>
 </template>
 <script>
 import Form from "./components/Form.vue"
@@ -14,8 +14,30 @@ export default {
     function addTodo(todo){
       liste.value.push(todo)
     }
-    function deleteTodo(index){
-      liste.value.splice(index, 1)
+    
+    function updateTodo(todo){
+      const todoAUpdate = liste.value.find(tod => tod.id === todo.id)
+      const index = liste.value.indexOf(todoAUpdate)
+      liste.value[index] = todo
+
+      /*
+      solution alternative 
+      fetch("http://localhost:3004/todos")
+      .then(reponse => reponse.json())
+      .then(data => {
+        console.log(data);
+        liste.value = data ; 
+      })
+      */
+    }
+
+    function deleteTodo(index , id){
+      fetch(`http://localhost:3004/todos/${id}`, {method : "delete"})
+      .then(reponse => reponse.json())
+      .then(data =>{
+        console.log(data)
+        liste.value.splice(index, 1)
+      })
     }
 
    onMounted(() => {
@@ -30,7 +52,8 @@ export default {
     return {
       liste,
       addTodo,
-      deleteTodo
+      deleteTodo,
+      updateTodo
     }
   },
   components : {Form, List},
