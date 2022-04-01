@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ConnexionView from '../views/ConnexionView.vue'
+import ArticlesView from '../views/ArticlesView.vue'
+import SingleView from '../views/SingleView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +24,16 @@ const router = createRouter({
       path: '/connexion',
       name: 'login',
       component: ConnexionView
+    },
+    {
+      path: '/articles',
+      name: 'articles',
+      component: ArticlesView
+    },
+    {
+      path: '/articles/:id',
+      name: 'single-article',
+      component: SingleView
     },
   ]
 })

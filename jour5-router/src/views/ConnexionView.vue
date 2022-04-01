@@ -6,7 +6,6 @@
       <div class="text-center column column-100">
           <input type="submit">
       </div>
-      
   </form>
 </template>
 

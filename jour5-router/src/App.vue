@@ -4,6 +4,7 @@
           <nav class="text-center">
             <RouterLink to="/">Home</RouterLink>
             <RouterLink :to="{name : 'about'}">About</RouterLink>
+            <RouterLink :to="{name : 'articles'}">Articles</RouterLink>
             <RouterLink :to="{name : 'login'}">Connexion</RouterLink>
           </nav>
       </header>
