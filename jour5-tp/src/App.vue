@@ -3,13 +3,16 @@
   <p @click="modifState">{{ state }}</p>
   <p @click="modifNb">{{ nb }}</p>
   <p @click="modifDataNom">{{ nom }} - {{ age }}</p>
+  <Exo />
 </template>
 
 <script>
 import { useNb } from "./hook/useNb";
 import { useState } from "./hook/useState";
 import { toRefs , reactive} from "vue"
+import Exo from "./components/Exo.vue"
 export default {
+  components : {Exo} ,
   setup(){
     const [nb,modifNb] = useNb(5); // fonction composite qui retourne une ou plusieurs variables reactive (ref) et une fonction qui permet de la modifier 
 
