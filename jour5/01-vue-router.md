@@ -44,3 +44,17 @@ cd ..
 npm init vue@latest
 jour5-router
 cd jour5-router && npm i && npm run dev
+
+DOM => history API 
+https://developer.mozilla.org/en-US/docs/Web/API/History_API
+
+
+React 
+<BrowserRouter>
+    <App />
+</BrowserRouter>
+
+Vue => main.js
+createApp(App) 
+.use()
+.mount("#app")
