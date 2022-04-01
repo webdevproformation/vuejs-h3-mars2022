@@ -4,6 +4,7 @@
           <nav class="text-center">
             <RouterLink to="/">Home</RouterLink>
             <RouterLink :to="{name : 'about'}">About</RouterLink>
+            <RouterLink :to="{name : 'login'}">Connexion</RouterLink>
           </nav>
       </header>
       <RouterView />
@@ -39,7 +40,7 @@ export default {
     color: white !important;
   }
   .text-center{
-    display: flex;
+    display: flex !important;
     justify-content: center;
   }
 </style>
